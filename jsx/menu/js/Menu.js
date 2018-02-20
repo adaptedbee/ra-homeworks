@@ -14,9 +14,9 @@ const Menu = function(props) {
       <div className="menu-toggle"><span></span></div>
       <nav>
         <ul>
-          {items.map((item) => {
+          {items.map((item, index) => {
             return (
-              <li><a href={item.href}>{item.title}</a></li>
+              <li key={index}><a href={item.href}>{item.title}</a></li>
             );
           })}
         </ul>

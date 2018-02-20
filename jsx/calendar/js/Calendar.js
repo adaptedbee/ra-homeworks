@@ -102,12 +102,12 @@ const Calendar = function(props) {
           </tr>
         </thead>
         <tbody>
-          {dates.map((week) => {
+          {dates.map((week, weekIndex) => {
             return (
-              <tr>
-                {week.map((day) => {
+              <tr key={weekIndex}>
+                {week.map((day, dayIndex) => {
                   return (
-                    <td className={getDayClasses(day)}>
+                    <td className={getDayClasses(day)} key={dayIndex}>
                       {day.getDate()}
                     </td>
                   );
