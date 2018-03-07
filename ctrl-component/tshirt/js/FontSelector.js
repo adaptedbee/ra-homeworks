@@ -12,7 +12,7 @@ const FontSelector = ({fonts, selectedFont, onSelect}) => {
                             onChange={() => onSelect(font)}
                         />
                         <label htmlFor={font.name} className="grid-1">
-                            <PictureFont text="ABC" path={font.path} />
+                            <PictureFont text="abc" path={font.path} />
                         </label>
                     </div>
                 );
