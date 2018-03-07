@@ -1,7 +1,7 @@
 'use strict';
 
 const ChartsItem = (props) => {
-  const { type, color, style, item } = props;
+  const { type, item, color, style } = props;
 
   function getType() {
     if (type === undefined) {
