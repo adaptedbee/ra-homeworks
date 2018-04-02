@@ -10,22 +10,16 @@ function AuthForm(props) {
     name = event.currentTarget.value;
   };
   const changeEmail = (event) => {
-    const emailEx = /\w|@|.|-/;
+    const notEmailEx = /[^a-zA-Z0-9|@|.|-|_]/g;
 
-    if (event.currentTarget.value.search(emailEx) !== -1 || event.currentTarget.value === '') {
-      email = event.currentTarget.value;
-    } else {
-      event.currentTarget.value = email;
-    }
+    email = event.currentTarget.value.replace(notEmailEx, '');
+    event.currentTarget.value = email;
   };
   const changePassword = (event) => {
-    const passwordEx = /\w/;
+    const notPasswordEx = /[^a-zA-Z0-9|_]/g;
 
-    if (event.currentTarget.value.search(passwordEx) !== -1 || event.currentTarget.value === '') {
-      password = event.currentTarget.value;
-    } else {
-      event.currentTarget.value = password;
-    }
+    password = event.currentTarget.value.replace(notPasswordEx, '');
+    event.currentTarget.value = password;
   };
   const submitForm = (event) => {
     event.preventDefault();
