@@ -83,3 +83,8 @@ function FeedbackForm(props) {
     </form>
   );
 }
+
+FeedbackForm.propTypes = {
+  data: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired
+};
