@@ -16,7 +16,6 @@ class App extends React.Component {
     }
 
     selectFont = (selectedFont) => {
-        console.log(selectedFont);
         this.setState({selectedFont});
     }
 
@@ -51,9 +50,8 @@ class App extends React.Component {
         );
     }
 
-    setText = (event) => {
-        this.setState({
-            text: event.currentTarget.value
-        });
+    setText = (text) => {
+        console.log(text);
+        this.setState({text});
     }
 }
