@@ -51,7 +51,6 @@ class App extends React.Component {
     }
 
     setText = (text) => {
-        console.log(text);
         this.setState({text});
     }
 }
