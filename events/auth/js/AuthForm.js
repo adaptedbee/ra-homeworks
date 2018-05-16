@@ -2,48 +2,46 @@
 
 function AuthForm(props) {
   const { onAuth } = props;
+  let form;
 
-  let name = '';
-  let email = '';
-  let password = '';
-  const changeName = (event) => {
-    name = event.currentTarget.value;
-  };
-  const changeEmail = (event) => {
-    const notEmailEx = /[^a-zA-Z0-9|@|.|-|_]/g;
+  const onEmailChange = (event) => {
+    const notEmailEx = /[^\w@.-_]/gi;
 
-    email = event.currentTarget.value.replace(notEmailEx, '');
+    let email = event.currentTarget.value.replace(notEmailEx, '');
     event.currentTarget.value = email;
   };
-  const changePassword = (event) => {
-    const notPasswordEx = /[^a-zA-Z0-9|_]/g;
+  const onPasswordChange = (event) => {
+    const notPasswordEx = /[^\w_]/gi;
 
-    password = event.currentTarget.value.replace(notPasswordEx, '');
+    let password = event.currentTarget.value.replace(notPasswordEx, '');
     event.currentTarget.value = password;
   };
-  const submitForm = (event) => {
+  const onFormSubmit = (event) => {
     event.preventDefault();
+
+    const { name, email, password } = form;
     if (onAuth && typeof onAuth === 'function') {
       onAuth({
-        name,
-        email,
-        password
+        name: name.value,
+        email: email.value,
+        password: password.value
       });
     }
   };
 
   return (
-    <form className="ModalForm" action="/404/auth/" method="POST" onSubmit={submitForm}>
+    <form className="ModalForm" action="/404/auth/" method="POST" onSubmit={onFormSubmit}
+      ref={modalForm => form = modalForm}>
       <div className="Input">
-        <input required type="text" placeholder="Имя" onChange={changeName} />
+        <input required type="text" name="name" placeholder="Имя" />
         <label></label>
       </div>
       <div className="Input">
-        <input type="email" placeholder="Электронная почта" onChange={changeEmail} />
+        <input type="email" name="email" placeholder="Электронная почта" onChange={onEmailChange} />
         <label></label>
       </div>
       <div className="Input">
-        <input required type="password" placeholder="Пароль" onChange={changePassword} />
+        <input required type="password" name="password" placeholder="Пароль" onChange={onPasswordChange} />
         <label></label>
       </div>
       <button type="submit">
