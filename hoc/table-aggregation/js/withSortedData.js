@@ -11,13 +11,19 @@ const withSortedData = (Component, format) => {
         });
         
         if (format === 'month') {
-          let aggregatedList = [];
-          list.forEach((item) => {
+          const currentDate = new Date();
+          const currentYear = currentDate.toLocaleDateString('en-US', {year: 'numeric'});
+          
+          const filteredList = list.filter((item) => {
+            return item.date.slice(0, 4) === currentYear;
+          });
+          filteredList.forEach((item) => {
             const date = new Date(item.date);
             item.month = date.toLocaleDateString('en-US', {month: 'short'});
           });
 
-          list.forEach((item, index) => {
+          let aggregatedList = [];
+          filteredList.forEach((item, index) => {
             if (aggregatedList.length > 0 && 
               item.month === aggregatedList[aggregatedList.length - 1].month) {
                 aggregatedList[aggregatedList.length - 1].amount += item.amount;
