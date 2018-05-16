@@ -2,7 +2,7 @@ const TextRenderLine = ({value, onChange}) => {
 	const onTextChange = (event) => {
 		const phraseEx = /[^a-z\s]/gi;
 
-    let correctedPhrase = event.currentTarget.value.replace(phraseEx, '');
+    let correctedPhrase = event.currentTarget.value.toLowerCase().replace(phraseEx, '');
 		event.currentTarget.value = correctedPhrase;
 		
 		onChange(correctedPhrase);
