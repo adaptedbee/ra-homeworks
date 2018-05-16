@@ -1,9 +1,6 @@
 'use strict';
 
 const SortTable = props => {
-
-    console.log('SortTable', props);
-
     return (
         <div>
             <h2>Sort Table</h2>

@@ -9,23 +9,26 @@ const withSortedData = (Component, format) => {
           if (a.date > b.date) return 1;
           if (a.date < b.date) return -1;
         });
-        let aggregatedList = [];
-
+        
         if (format === 'month') {
+          let aggregatedList = [];
           list.forEach((item) => {
             const date = new Date(item.date);
             item.month = date.toLocaleDateString('en-US', {month: 'short'});
           });
 
           list.forEach((item, index) => {
-            let lastAggregatedItem = aggregatedList[aggregatedList.length - 1];
-            if (index > 0 && item.month === lastAggregatedItem.month) {
-              lastAggregatedItem.amount += item.amount;
+            if (aggregatedList.length > 0 && 
+              item.month === aggregatedList[aggregatedList.length - 1].month) {
+                aggregatedList[aggregatedList.length - 1].amount += item.amount;
             } else {
-              aggregatedList.push(item);
+              aggregatedList.push(Object.create(item));
             }
           });
+
+          return aggregatedList;
         } else if (format === 'year') {
+          let aggregatedList = [];
           list.forEach((item) => {
             const date = new Date(item.date);
             const yearString = date.toLocaleDateString('en-US', {year: 'numeric'});
@@ -33,20 +36,18 @@ const withSortedData = (Component, format) => {
           });
 
           list.forEach((item, index) => {
-            let lastAggregatedItem = aggregatedList[aggregatedList.length - 1];
-            if (index > 0 && item.year === lastAggregatedItem.year) {
-              lastAggregatedItem.amount += item.amount;
+            if (aggregatedList.length > 0 && 
+              item.year === aggregatedList[aggregatedList.length - 1].year) {
+                aggregatedList[aggregatedList.length - 1].amount += item.amount;
             } else {
-              aggregatedList.push(item);
+              aggregatedList.push(Object.create(item));
             }
           });
-        }
 
-        if (format === 'month' || format === 'year') {
           return aggregatedList;
-        } else {
-          return list;
         }
+      
+        return list;
       }
 
       render() {
