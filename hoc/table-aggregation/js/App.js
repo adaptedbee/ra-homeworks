@@ -2,7 +2,7 @@
 
 const MonthTableSorted = withSortedData(MonthTable, 'month');
 const YearTableSorted = withSortedData(YearTable, 'year');
-const SortTableSorted = withSortedData(SortTable);
+const SortTableSorted = withSortedData(SortTable, 'desc');
 
 class App extends React.Component {
     constructor(props) {
