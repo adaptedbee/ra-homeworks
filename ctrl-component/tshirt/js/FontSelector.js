@@ -20,3 +20,9 @@ const FontSelector = ({fonts, selectedFont, onSelect}) => {
         </div>
     );
 };
+
+FontSelector.propTypes = {
+  fonts: PropTypes.array,
+  selectedFont: PropTypes.object,
+  onSelect: PropTypes.func
+};
