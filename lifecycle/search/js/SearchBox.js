@@ -22,7 +22,6 @@ class SearchBox extends React.Component {
     this.setState({
       fixed: this.isFixed()
     });
-    console.log('changed');
   }
 
   setSearchBoxRef(el) {
