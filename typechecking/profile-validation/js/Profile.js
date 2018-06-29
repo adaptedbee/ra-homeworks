@@ -34,13 +34,13 @@ Profile.propTypes = {
   img: PropTypes.string,
   url: (props, propName, componentName) => {
     if (props[propName] !== undefined &&
-      !/https:\/\/vk.com\/(id[0-9]+|[A-Za-z0-9_-]+)/.test(props[propName])) {
+      !/^https:\/\/vk.com\/(id[0-9]+|[A-Za-z0-9_-]+)$/.test(props[propName])) {
       return new Error(`Invalid prop ${propName} supplied to ${componentName}. Expecting something like 'https://vk.com/x'. Validation failed.`);
     }
   },
   birthday: (props, propName, componentName) => {
     if (props[propName] !== undefined &&
-      !/[0-9]{1,4}-[0-9]{1,2}-[0-9]{1,2}/.test(props[propName])) {
+      !/^[0-9]{1,4}-[0-9]{1,2}-[0-9]{1,2}$/.test(props[propName])) {
       return new Error(`Invalid prop ${propName} ${props[propName]} supplied to ${componentName}. Expecting something like 'YYYY-MM-DD'. Validation failed.`);
     }
 
